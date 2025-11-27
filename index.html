@@ -4,7 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Image Generator</title>
+    <!-- Primary Meta Tags -->
+    <title>Code Image Generator | Create Code Snippets in macOS & Windows Styles</title>
+    <meta name="title" content="Code Image Generator | Create Code Snippets in macOS & Windows Styles">
+    <meta name="description"
+        content="Generate beautiful code snippet images with OS-specific themes like macOS, Windows 10, Windows 11, Ubuntu, and more. Customize your code style and instantly create shareable code images.">
+
+    <meta name="keywords"
+        content="code image generator, code screenshot generator, macOS code style, windows code style, code snippet image, developer tool, syntax highlighter, code to image converter, shareable code snippet, OS themed code image">
+
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="en">
+    <meta name="author" content="Adarsh Mishra">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Code Image Generator | macOS & Windows Code Snippet Creator">
+    <meta property="og:description"
+        content="Create high-quality code snippet images with OS-specific window styles like macOS, Windows 10/11, and Linux. Perfect for blogs, tutorials, and social media.">
+    <meta property="og:image" content="https://codeimage.netlify.app/logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta property="og:url" content="https://codeimage.netlify.app/">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -12,6 +33,16 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FCQ4VH6CK8"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-FCQ4VH6CK8');
+    </script>
 </head>
 
 <body>
@@ -25,8 +56,13 @@
             </header>
 
             <div class="control-group">
+                <label>Window Title</label>
+                <input type="text" id="titleInput" value="Untitled-1" placeholder="Enter title here...">
+            </div>
+
+            <div class="control-group">
                 <label>Code Input</label>
-                <textarea id="codeInput" placeholder="Paste your code here...">module.exports = leftpad;
+                <textarea id="codeInput" placeholder="Paste your code here..." spellcheck="false">module.exports = leftpad;
 
 function leftpad(str, len, ch) {
   str = String(str);
@@ -73,7 +109,7 @@ function leftpad(str, len, ch) {
                             <span class="control minimize"></span>
                             <span class="control maximize"></span>
                         </div>
-                        <div class="window-title">Untitled-1</div>
+                        <div class="window-title" id="windowTitle">Untitled-1</div>
                     </div>
                     <div class="window-content">
                         <pre><code id="codeDisplay" class="language-javascript"></code></pre>

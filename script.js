@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const codeInput = document.getElementById('codeInput');
+    const titleInput = document.getElementById('titleInput');
     const codeDisplay = document.getElementById('codeDisplay');
     const windowFrame = document.getElementById('windowFrame');
     const bgColorInput = document.getElementById('bgColor');
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listeners
     codeInput.addEventListener('input', updateCode);
-
+    titleInput.addEventListener('input', updateWindowTitle);
     bgColorInput.addEventListener('input', (e) => {
         captureContainer.style.backgroundColor = e.target.value;
     });
@@ -68,6 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.cursor = 'default';
         }
     });
+
+    function updateWindowTitle() {
+        const windowTitle = document.getElementById('windowTitle');
+        windowTitle.textContent = titleInput.value;
+    }
 
     function updateCode() {
         // Escape HTML to prevent injection and display correctly
