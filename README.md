@@ -30,10 +30,14 @@
 
 ## 🖼 Screenshots
 
-```
-```
+Mac Os Theme
+<img width="1343" height="697" alt="image" src="https://github.com/user-attachments/assets/183340fd-f63b-4843-8391-a5bb53eb89ff" />
 
-*(Replace with your own screenshots.)*
+Window XP Theme
+<img width="1347" height="698" alt="image" src="https://github.com/user-attachments/assets/c1f33f28-4161-4b78-a0b3-9f13b9b295ec" />
+
+Window 7
+<img width="1347" height="698" alt="image" src="https://github.com/user-attachments/assets/35cbaa73-bb0b-4010-b84d-cae64fd40fcd" />
 
 ---
 
