@@ -20,6 +20,11 @@ body {
     overflow: hidden;
 }
 
+code[class*=language-],
+pre[class*=language-] {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+}
+
 .app-container {
     display: flex;
     height: 100vh;
