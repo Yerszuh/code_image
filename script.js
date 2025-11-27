@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const osButtons = document.querySelectorAll('.os-btn');
     const downloadBtn = document.getElementById('downloadBtn');
 
+    let selectedOS = "mac";
+
     const sidebar = document.querySelector('.sidebar');
     const dragHandle = document.getElementById('dragHandle');
 
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Update window class
             const os = btn.dataset.os;
+            selectedOS = os;
             // Reset classes
             windowFrame.className = 'window-frame';
             // Add new class
@@ -93,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             useCORS: true // If we had external images
         }).then(canvas => {
             const link = document.createElement('a');
-            link.download = 'code-snap.png';
+            link.download = selectedOS + '-code-snap.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
         });

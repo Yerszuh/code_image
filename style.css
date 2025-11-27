@@ -97,6 +97,42 @@ textarea {
     scrollbar-width: thin;
 }
 
+.site-footer {
+    margin-top: 60px;
+    padding: 20px 0;
+    text-align: center;
+
+    background: #0d0d17;
+    /* deep dark like the app background */
+    color: #bbb;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+    /* subtle glow on top to match purple theme */
+    box-shadow: 0 -8px 30px rgba(200, 0, 255, 0.25);
+
+    font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.site-footer p {
+    margin: 0;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+}
+
+.site-footer a {
+    color: #d673ff;
+    /* smooth purple highlight */
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.site-footer a:hover {
+    color: #ffb7ff;
+    text-shadow: 0 0 8px rgba(255, 100, 255, 0.8);
+}
+
 #titleInput {
     background-color: #0f172a;
     border: 1px solid var(--border-color);
