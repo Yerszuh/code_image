@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const captureContainer = document.getElementById('captureContainer');
     const osButtons = document.querySelectorAll('.os-btn');
     const downloadBtn = document.getElementById('downloadBtn');
+    // const themeSelect = document.getElementById('themeSelect'); // Removed
+    const fontSelect = document.getElementById('fontSelect');
+    const prismThemeLink = document.getElementById('prism-theme-link');
+    const lineNumbersToggle = document.getElementById('lineNumbersToggle');
+    const advanceBtn = document.getElementById('advanceBtn');
+    const advanceOptions = document.getElementById('advanceOptions');
+    const advanceArrow = document.getElementById('advanceArrow');
 
     let selectedOS = "mac";
 
@@ -15,6 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial Render
     updateCode();
+
+    // Advance Options Toggle
+    advanceBtn.addEventListener('click', () => {
+        const isHidden = advanceOptions.style.display === 'none';
+        advanceOptions.style.display = isHidden ? 'flex' : 'none';
+        advanceArrow.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+    });
 
     // Event Listeners
     codeInput.addEventListener('input', updateCode);
@@ -41,6 +55,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     downloadBtn.addEventListener('click', downloadImage);
+
+    // Theme Cards Logic
+    const themeCards = document.querySelectorAll('.theme-card');
+    themeCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Remove active class from all cards
+            themeCards.forEach(c => c.classList.remove('active'));
+            // Add active class to clicked card
+            card.classList.add('active');
+
+            // Update theme
+            const theme = card.dataset.theme;
+            prismThemeLink.href = `https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/${theme}`;
+        });
+    });
+
+    fontSelect.addEventListener('change', (e) => {
+        const font = e.target.value;
+        codeDisplay.style.fontFamily = font;
+    });
+
+    lineNumbersToggle.addEventListener('change', (e) => {
+        if (e.target.checked) {
+            codeDisplay.parentElement.classList.add('line-numbers');
+        } else {
+            codeDisplay.parentElement.classList.remove('line-numbers');
+        }
+        // Re-highlight to apply line numbers
+        updateCode();
+    });
 
     // Resizing Logic
     let isResizing = false;

@@ -29,9 +29,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&family=Roboto+Mono:wght@400;500&family=Source+Code+Pro:wght@400;500&family=JetBrains+Mono:wght@400;500&family=Inconsolata:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+    <link id="prism-theme-link" rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css" />
     <link rel="stylesheet" href="style.css">
 
     <!-- Google tag (gtag.js) -->
@@ -90,8 +93,159 @@ function leftpad(str, len, ch) {
             </div>
 
             <div class="control-group">
-                <label>Background Color</label>
-                <input type="color" id="bgColor" value="#c084fc">
+                <button id="advanceBtn" class="secondary-btn"
+                    style="width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: center; background: #334155; color: white; border: 1px solid #475569; padding: 0.75rem; border-radius: 0.5rem; cursor: pointer;">
+                    Advanced Options
+                    <span id="advanceArrow" style="transition: transform 0.3s;">▼</span>
+                </button>
+            </div>
+
+            <div id="advanceOptions" class="advance-options"
+                style="display: none; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+                <div class="control-group">
+                    <label for="languageSelect">Language</label>
+                    <select id="languageSelect">
+                        <option value="javascript">JavaScript</option>
+                        <option value="python">Python</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="java">Java</option>
+                        <option value="csharp">C#</option>
+                        <option value="php">PHP</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="go">Go</option>
+                        <option value="rust">Rust</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="json">JSON</option>
+                        <option value="markdown">Markdown</option>
+                        <option value="sql">SQL</option>
+                        <option value="xml">XML</option>
+                        <option value="bash">Bash</option>
+                        <option value="yaml">YAML</option>
+                        <option value="cpp">C++</option>
+                        <option value="c">C</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Background Color</label>
+                    <input type="color" id="bgColor" value="#c084fc">
+                </div>
+
+                <div class="control-group">
+                    <label for="fontSelect">Font</label>
+                    <select id="fontSelect">
+                        <option value="'Fira Code', monospace">Fira Code</option>
+                        <option value="'Roboto Mono', monospace">Roboto Mono</option>
+                        <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                        <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                        <option value="'Inconsolata', monospace">Inconsolata</option>
+                        <option value="'Inter', sans-serif">Inter</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="fontSizeInput">Font Size</label>
+                    <input type="number" id="fontSizeInput" value="14" min="8" max="32"
+                        style="width: 100%; padding: 0.75rem; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 0.5rem;">
+                </div>
+
+                <div class="control-group">
+                    <label for="paddingInput">Padding</label>
+                    <input type="number" id="paddingInput" value="32" min="0" max="100"
+                        style="width: 100%; padding: 0.75rem; background: #0f172a; border: 1px solid #334155; color: white; border-radius: 0.5rem;">
+                </div>
+
+                <div class="control-group">
+                    <div class="toggle-group">
+                        <label>Line Numbers</label>
+                        <label class="switch">
+                            <input type="checkbox" id="lineNumbersToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <div class="toggle-group">
+                        <label>Shadow</label>
+                        <label class="switch">
+                            <input type="checkbox" id="shadowToggle" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>Theme</label>
+                    <div class="theme-grid scrollable-grid"
+                        style="max-height: 300px; overflow-y: auto; padding-right: 5px;">
+                        <div class="theme-card active" data-theme="prism-tomorrow.min.css"
+                            style="background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);">
+                            <div class="theme-preview">
+                                <span style="color: #cc99cd;">function</span> <span
+                                    style="color: #6196cc;">Preview</span>()
+                                {<br>
+                                &nbsp;&nbsp;<span style="color: #cc99cd;">const</span> [<span
+                                    style="color: #f08d49;">count</span>] = <span
+                                    style="color: #6196cc;">useSignal</span>(0);<br>
+                                }
+                            </div>
+                            <div class="theme-name">Tomorrow</div>
+                        </div>
+                        <div class="theme-card" data-theme="prism.min.css"
+                            style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+                            <div class="theme-preview">
+                                <span style="color: #905;">function</span> <span style="color: #690;">Preview</span>()
+                                {<br>
+                                &nbsp;&nbsp;<span style="color: #905;">const</span> [<span
+                                    style="color: #690;">count</span>] =
+                                <span style="color: #905;">useSignal</span>(0);<br>
+                                }
+                            </div>
+                            <div class="theme-name">Default</div>
+                        </div>
+                        <div class="theme-card" data-theme="prism-twilight.min.css"
+                            style="background: linear-gradient(135deg, #f97316 0%, #eab308 100%);">
+                            <div class="theme-preview">
+                                <span style="color: #cda869;">function</span> <span
+                                    style="color: #f9ee98;">Preview</span>()
+                                {<br>
+                                &nbsp;&nbsp;<span style="color: #cda869;">const</span> [<span
+                                    style="color: #cf6a4c;">count</span>] = <span
+                                    style="color: #f9ee98;">useSignal</span>(0);<br>
+                                }
+                            </div>
+                            <div class="theme-name">Twilight</div>
+                        </div>
+                        <div class="theme-card" data-theme="prism-solarizedlight.min.css"
+                            style="background: linear-gradient(135deg, #22c55e 0%, #10b981 100%);">
+                            <div class="theme-preview">
+                                <span style="color: #859900;">function</span> <span
+                                    style="color: #268bd2;">Preview</span>()
+                                {<br>
+                                &nbsp;&nbsp;<span style="color: #859900;">const</span> [<span
+                                    style="color: #d33682;">count</span>] = <span
+                                    style="color: #268bd2;">useSignal</span>(0);<br>
+                                }
+                            </div>
+                            <div class="theme-name">Solarized</div>
+                        </div>
+                        <div class="theme-card" data-theme="prism-okaidia.min.css"
+                            style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);">
+                            <div class="theme-preview">
+                                <span style="color: #66d9ef;">function</span> <span
+                                    style="color: #a6e22e;">Preview</span>()
+                                {<br>
+                                &nbsp;&nbsp;<span style="color: #66d9ef;">const</span> [<span
+                                    style="color: #ae81ff;">count</span>] = <span
+                                    style="color: #a6e22e;">useSignal</span>(0);<br>
+                                }
+                            </div>
+                            <div class="theme-name">Okaidia</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <button id="downloadBtn" class="primary-btn">Download Image</button>
@@ -99,9 +253,6 @@ function leftpad(str, len, ch) {
                 <p>Developed by <a href="https://github.com/adarshM84/code_image">Adarsh Mishra</a></p>
             </footer>
         </aside>
-
-
-        <div class="resizer" id="dragHandle"></div>
 
         <!-- Preview Area -->
         <main class="preview-area">
@@ -126,6 +277,8 @@ function leftpad(str, len, ch) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"></script>
     <script src="script.js"></script>
 </body>
 

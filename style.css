@@ -22,7 +22,7 @@ body {
 
 code[class*=language-],
 pre[class*=language-] {
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 }
 
 .app-container {
@@ -32,7 +32,7 @@ pre[class*=language-] {
 
 /* Sidebar */
 .sidebar {
-    width: 35%;
+    width: 30%;
     background-color: var(--sidebar-bg);
     padding: 2rem;
     border-right: 1px solid var(--border-color);
@@ -139,6 +139,26 @@ textarea {
     border-radius: 0.5rem;
     padding: 0.75rem;
     color: white;
+}
+
+select {
+    background-color: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: white;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23cbd5e1'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+}
+
+select:focus {
+    border-color: var(--accent-color);
+    outline: none;
 }
 
 textarea:focus {
@@ -794,9 +814,158 @@ code {
     background-color: transparent;
 }
 
-.window-kde .minimize::after {
-    content: 'v';
-    font-size: 8px;
+/* Right Sidebar */
+/* Right Sidebar Removed */
+
+/* Theme Grid */
+.theme-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.scrollable-grid::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollable-grid::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.scrollable-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.theme-card {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    /* Aspect ratio for card look */
+    aspect-ratio: 1 / 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.theme-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.theme-card.active {
+    border-color: white;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.theme-preview {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.7rem;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+/* Fake window header for preview */
+.theme-preview::before {
+    content: '// Just a code example';
+    display: block;
+    color: #666;
+    margin-bottom: 0.5rem;
+    font-size: 0.6rem;
+}
+
+.theme-name {
+    font-weight: 600;
+    color: white;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(2px);
+    transition: background-color 0.2s;
+}
+
+/* Toggle Switch */
+.toggle-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--accent-color);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--accent-color);
+}
+
+input:checked+.slider:before {
+    transform: translateX(16px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 24px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Prism Line Numbers Override */
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid #444;
 }
 
 .window-kde .maximize {
