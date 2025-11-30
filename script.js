@@ -161,17 +161,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function downloadImage() {
+        // Get user-selected download options
+        const downloadSizeSelect = document.getElementById('downloadSizeSelect');
+        const rotationSelect = document.getElementById('rotationSelect');
+        const scale = parseInt(downloadSizeSelect.value);
+        const rotation = parseInt(rotationSelect.value);
+
         // Use html2canvas to capture the container
-        // scale: 2 for better resolution on retina displays
         html2canvas(captureContainer, {
-            scale: 2,
+            scale: scale,
             backgroundColor: null, // Transparent background if container has none
             useCORS: true // If we had external images
         }).then(canvas => {
+            let finalCanvas = canvas;
+
+            // Apply rotation if needed
+            if (rotation !== 0) {
+                finalCanvas = rotateCanvas(canvas, rotation);
+            }
+
+            // Create download link
             const link = document.createElement('a');
-            link.download = selectedOS + '-code-snap.png';
-            link.href = canvas.toDataURL('image/png');
+            const sizeLabel = scale === 1 ? '' : `_${scale}x`;
+            const rotationLabel = rotation === 0 ? '' : `_${rotation}deg`;
+            link.download = `${selectedOS}-code-snap${sizeLabel}${rotationLabel}.png`;
+            link.href = finalCanvas.toDataURL('image/png');
             link.click();
         });
+    }
+
+    function rotateCanvas(canvas, degrees) {
+        // Create a new canvas for the rotated image
+        const rotatedCanvas = document.createElement('canvas');
+        const ctx = rotatedCanvas.getContext('2d');
+
+        // For 90 or 270 degrees, swap width and height
+        if (degrees === 90 || degrees === 270) {
+            rotatedCanvas.width = canvas.height;
+            rotatedCanvas.height = canvas.width;
+        } else {
+            rotatedCanvas.width = canvas.width;
+            rotatedCanvas.height = canvas.height;
+        }
+
+        // Translate to center, rotate, then draw
+        ctx.translate(rotatedCanvas.width / 2, rotatedCanvas.height / 2);
+        ctx.rotate((degrees * Math.PI) / 180);
+        ctx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+
+        return rotatedCanvas;
     }
 });
